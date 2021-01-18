@@ -1,0 +1,26 @@
+<% if current_user.errors.any? %>
+    <strong>
+     <%= pluralize(current_user.errors.count, "error") %>
+   </strong>
+
+    <ul>
+      <% current_user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    <ul>
+  <% end %>
+
+<% if current_user.avatar? %>
+  <%= image_tag current_user.avatar.thumb.url %>
+<% end %> 
+
+<%= form_tag profile_update_path, multipart: true, method: :put,class: "article_edit" do %>
+  
+  <%= label_tag :name %><br>
+  <%= text_field_tag :name,current_user.name %><br>
+
+  <%= label_tag :avatar %><br>
+  <%= file_field_tag :avatar ,name:"avatar" %><br>
+  <%= submit_tag "update" %>
+  
+<% end %>

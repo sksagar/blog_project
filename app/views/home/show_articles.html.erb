@@ -1,0 +1,31 @@
+<p><strong><%= @article.title %></strong></p>
+
+<p><%= raw @article.content %></p>
+
+<%= form_for(@comment) do |comments| %>
+  <div>
+    <%= comments.text_field :description ,placeholder: "write a comment"%>
+    <%= comments.hidden_field :article_id, :value => @article.id %>
+    <%= comments.submit "create comment" %>
+  </div>
+
+<p class = "comments"><b>comments</b></p>
+
+
+<table>
+  <% @comments.each do |comment| %>
+  <div>
+    <tr>
+      <td><strong><%= comment.user.name %></strong></td>
+    </tr>
+
+    <tr>
+      <td><%= comment.description %></td>
+    </tr>
+  </div>
+    
+  <% end %>
+</table>
+
+<% end %>
+

@@ -1,0 +1,9 @@
+art_str = ""
+          
+  <% @articles.each do |post| %>
+      art_str += `<%= render partial: 'article' ,locals: {article: post} %>`
+          
+    <% end %>
+
+
+ $(".home_table").append(art_str)

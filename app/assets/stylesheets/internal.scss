@@ -1,0 +1,31 @@
+@import "bootstrap";
+@import "select2.min";
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.article_edit {
+
+      margin-left: 250px;
+      padding-top: 50px;
+      color: blue;
+}
+.field {
+
+    margin-left: 200px;
+ }
+
+.ckeditor{
+  max-width: 50px;
+}
+
+.heading_blog {
+  color: red;
+  font-size: 45px;
+}
+
+.link {
+  margin-left: 70px;
+}

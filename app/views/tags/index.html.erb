@@ -1,0 +1,19 @@
+<div>
+  <h1>Tags</h1>
+  <table class = "table">
+
+    <% @tags.each do |tag_list| %>
+      <tr class = "border">
+        <td>
+          <%= tag_list.name %>
+        </td>
+        <td>
+          <%= link_to 'delete', tag_path(tag_list) ,method: :delete, data: {confirm: 'are you sure!'}%>
+          <%= link_to 'edit',edit_tag_path(tag_list),class: "link" %>
+
+          
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

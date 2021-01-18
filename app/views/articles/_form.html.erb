@@ -1,0 +1,47 @@
+<%= javascript_include_tag Ckeditor.cdn_url %>
+
+<% if @article.errors.any? %>
+    <strong>
+     <%= pluralize(@article.errors.count, "error") %>
+   </strong>
+
+    <ul>
+      <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    <ul>
+  <% end %>
+
+
+<%= form_for(@article)do |f| %>
+
+
+  <div>
+    <%= f.label :title , class: "article_edit"%><br>
+    <%= f.text_field :title,class: "field" %>
+  </div>
+
+  <div>
+    <%= f.label :content,class: "article_edit" %><br>
+    <%= f.cktext_area :content,class: "ckeditor" %>
+
+  </div>
+
+  <div>
+
+    <%= select_tag "tag_ids", options_from_collection_for_select(Tag.all, "id","name"),
+      multiple: true %>
+
+    <script>
+      $(document).ready(function() {
+        $('#tag_ids').select2({width: "400px"});
+      });
+    </script>
+
+  </div>
+
+  <div class = "article_edit">
+    <%= f.submit "submit"%>
+  </div>
+
+<% end %>

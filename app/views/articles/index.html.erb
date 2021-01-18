@@ -1,0 +1,62 @@
+<div>
+
+    <%= link_to 'New Article',new_article_path %>
+    <p class = "heading_blog">Blogs</p>
+
+    <%= select_tag "articles_sort",options_for_select([["Sort By","sort_by"],["Title Asc","title_asc"],["Title Dsc","title_dsc"],["Newest First","newest_first"],["Oldest First","oldest_first"]],selected: [params[:sort_by],"Sort By"],disabled: "Sort By") %>
+    
+
+    <script>
+        $(document).ready(function() {
+          $('#articles_sort').change(function(){
+
+            var valueSelected = this.value;
+            url = "/articles?sort_by=" + valueSelected;
+            window.location.href = url; 
+           
+          })
+        });
+    </script>
+
+    <% if params[:sort_by].present? %>
+      <%= link_to "Clear All",articles_path %>
+    <% end %>
+
+    <table class = "table">
+      <tr class = "border">
+        <th>Title</th>
+        <th>Action</th>
+      </tr>
+
+      <% @articles.each do |show| %>
+
+   
+      <tr class = "border">
+        <td> <%= show.title %> </td>
+        <td><%= link_to 'show', article_path(show) %>,   <%= link_to 'edit', edit_article_path(show) %>, <%= link_to 'delete', article_path(show), method: :delete, data: {confirm: 'are you sure?'} %></td>
+
+      </tr>
+
+      <% end %>
+
+    </table>
+
+    <div  class = "pagination pagination-lg">
+      <% if @page > 1 %>
+
+        <%= link_to "<< Previous", articles_path(page: @page - 1, sort_by: params[:sort_by]),class: "page-link"%>
+
+      <% end %>
+
+      <% (1..@total_pages).each do |pag_no| %>
+        <%= link_to pag_no , articles_path(page: pag_no,sort_by: params[:sort_by]), class: "page-link" %>
+      <% end %>
+      
+      <% if @page < @total_pages %>
+        <%= link_to "Next >>", articles_path(page: @page + 1,sort_by: params[:sort_by]),class: "page-link" %>
+      <% end %>
+       
+    </div>
+
+</div>
+

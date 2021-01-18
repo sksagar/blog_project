@@ -1,0 +1,8 @@
+  <tr >
+    <td> <strong><%= article.title %>  <%= link_to "show_articles",home_show_path(article) %></strong> <br> <%= article.updated_at.strftime("%B %d,%Y") %> by <%= link_to article.user.name %></td>
+  </tr>
+           
+           
+  <tr>
+    <td> <%= raw article.content %> </td>
+  </tr>
